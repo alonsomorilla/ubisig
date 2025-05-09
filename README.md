@@ -49,6 +49,7 @@ ubisig/
     ├── docker-compose.yml
     └── nginx.conf
 
+---
 
 ## 🛠️ Cómo empezar
 
