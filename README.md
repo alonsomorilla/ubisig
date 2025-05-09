@@ -1,37 +1,66 @@
 # UbiSIG: Infraestructura geoespacial automatizada y portable
 
-## Fase 1: Infraestructura mínima en AWS
+# 🌍 UbiSIG — Sistema geoespacial portátil y sincronizado
 
-### Objetivo
-Diseñar y desplegar una arquitectura base en AWS como entorno para servidores geoespaciales como GeoServer.
+**UbiSIG** es un sistema geoespacial diseñado para funcionar tanto offline como online. Ideal para trabajos de campo en zonas sin cobertura, permite que equipos técnicos o comunidades locales recojan, almacenen y sincronicen datos espaciales desde una Raspberry Pi a un servidor en la nube.
 
-### Componentes de la arquitectura
+Este proyecto está en desarrollo, pero su arquitectura modular y de bajo coste lo hace escalable, ético y replicable.
 
-- VPC con subred pública
-- EC2 (Ubuntu) con IP elástica
-- Security Group personalizado
-- IAM Role con acceso controlado a S3
-- S3 bucket para almacenamiento geográfico
-- (Opcional) Route 53 o DNS dinámico
+---
 
-### Diagrama de arquitectura
-![Diagrama](enlace_o_captura_luego)
+## 🚀 Casos de uso reales
 
-### Pasos realizados
+1. **Inventario de flora sin cobertura:** Equipos de biólogos usan tablets conectadas a la Raspberry Pi para registrar especies en campo, sincronizando después con la base de datos central.
+2. **Prevención de incendios:** Brigadas forestales documentan trabajos y riesgos georreferenciados sin necesidad de conexión.
+3. **Diagnóstico rural colaborativo:** Personas locales y técnicos recogen datos sobre caminos, servicios, acceso a recursos, etc., con posibilidad de visualización y análisis posterior.
 
-1. Crear la VPC y subred
-2. Lanzar instancia EC2 con Ubuntu
-3. Asociar IP elástica
-4. Configurar Security Group (puertos: 22, 8080, 80)
-5. Crear IAM Role y asociarlo a EC2
-6. Crear bucket S3 para backup o capas
-7. Documentar configuraciones y comandos en este repo
+---
 
-### Próximos pasos
+## 🛠 Tecnologías utilizadas
 
-- Automatizar instalación de GeoServer con Ansible
-- Desplegar infraestructura con Terraform
-- Integrar almacenamiento SIG desde S3
+- **Raspberry Pi 5** con Raspbian OS
+- **Docker + Docker Compose**
+- **GeoServer + PostGIS**
+- **Leaflet + GeoJSON**
+- **Rsync / API REST** para sincronización de datos
+- **No-IP o DYNU**, para DNS dinámico
+- **Router 4G** para conectividad portátil
+
+---
+
+## 🧰 Estructura del proyecto (Documentación detallada en la carpeta /docs)
+
+```bash
+ubisig/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── docs/
+│   ├── arquitectura.md
+│   ├── raspberry_setup.md
+│   ├── cloud_setup.md
+│   └── casos_uso.md
+├── scripts/
+│   ├── raspberry/
+│   │   ├── instalar_geoserver.sh
+│   │   └── montar_intranet_wifi.sh
+│   └── cloud/
+│       ├── configurar_ssl.sh
+│       └── backup_postgis.sh
+└── deploy/
+    ├── docker-compose.yml
+    └── nginx.conf
+
+---
+
+## 🔐 Primeros pasos
+
+### Clonar el repositorio
+
+```bash
+git clone https://github.com/tuusuario/ubisig.git
+cd ubisig
+
 
 ### Créditos
 
