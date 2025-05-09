@@ -53,16 +53,35 @@ ubisig/
 
 ---
 
-## 🔐 Primeros pasos
+## 🛠️ Cómo empezar
 
-### Clonar el repositorio
+### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/ubisig.git
+git clone https://github.com/alonsomorilla/ubisig.git
 cd ubisig
+```
 
+### 2. Configurar entorno
 
-### Créditos
+- [Instrucciones para Raspberry Pi](docs/raspberry_setup.md)
+- [Despliegue del servidor en la nube](docs/cloud_setup.md)
 
-Este proyecto forma parte de mi formación como arquitecto cloud y especialista en SIG. Más información: [https://www.linkedin.com/in/almorillam/].
+---
 
+## 📚 Documentación adicional
+
+- [Arquitectura del sistema](docs/arquitectura.md)
+- [Descripción ampliada de los casos de uso](docs/casos_uso.md)
+
+---
+
+## 📝 Licencia
+
+Este proyecto se distribuye bajo licencia **AGPL-3.0**. Consulta el archivo [LICENSE](LICENSE).
+
+---
+
+## 🤝 ¿Quieres colaborar?
+
+Propon ideas, informa de errores o contacta conmigo por [LinkedIn](https://www.linkedin.com/in/alonsomorilla).
