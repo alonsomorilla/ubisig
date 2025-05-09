@@ -1,6 +1,4 @@
-# UbiSIG: Infraestructura geoespacial automatizada y portable
-
-# 🌍 UbiSIG — Sistema geoespacial portátil y sincronizado
+# 🌍 UbiSIG — Infraestructura geoespacial automatizada y portable
 
 **UbiSIG** es un sistema geoespacial diseñado para funcionar tanto offline como online. Ideal para trabajos de campo en zonas sin cobertura, permite que equipos técnicos o comunidades locales recojan, almacenen y sincronicen datos espaciales desde una Raspberry Pi a un servidor en la nube.
 
