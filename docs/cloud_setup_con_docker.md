@@ -89,3 +89,22 @@ docker run -d --name geoserver \
 - Abrir puerto 8080 en el grupo de seguridad de EC2
 - Configurar HTTPS con NGNIX y Let's Encrypt (ver docs/ssl_config.md)
 - Asociar DNS dinámico o IP elástica
+
+### 🔓 Reglas de acceso recomendadas (puertos en grupo de seguridad de AWS)
+
+Para que el sistema sea accesible desde fuera, asegúrate de que el grupo de seguridad de tu instancia EC2 permita los siguientes puertos:
+
+| Servicio          | Puerto | Protocolo | Origen recomendado |
+|-------------------|--------|-----------|---------------------|
+| GeoServer (HTTP)  | 8080   | TCP       | Solo IPs autorizadas o 0.0.0.0/0 para acceso abierto |
+| PostgreSQL/PostGIS| 5432   | TCP       | Solo IPs autorizadas (ej: IP de tu oficina o servidor) |
+| SSH               | 22     | TCP       | Solo tu IP personal (por seguridad) |
+
+> ⚠️ **Importante:** nunca abras el puerto 5432 a `0.0.0.0/0` sin autenticar ni proteger tu base de datos. Limítalo a rangos específicos o redes privadas siempre que sea posible.
+
+### 🛡️ Consejo de seguridad adicional
+Si GeoServer está en el mismo host (o en el mismo docker-compose), y no necesitas acceso externo a PostgreSQL, puedes:
+
+No abrir el puerto 5432 en el grupo de seguridad.
+
+Conectar por localhost o red interna Docker y evitar exposición externa.
