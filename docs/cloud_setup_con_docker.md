@@ -163,6 +163,8 @@ http://<TU_IP_PUBLICA>:8080/geoserver
 ```
 (o en el puerto que hayas elegido)
 
+---
+
 ## 4. Instalación de GeoServer. 
 ```bash
 docker run -d --name geoserver \
