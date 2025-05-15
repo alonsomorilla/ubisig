@@ -131,10 +131,11 @@ volumes:
 ### Importante: gestión de puertos
 #### Evitar conflictos de puertos
 - Si ya tienes PostgreSQL instalado en el sistema, el puerto 5432 puede estar ocupado. Para evitarlo, **cambia el puerto en Docker**:
----yaml
+---
     ports:
       - "55432:5432"
 ---
+
 - Si el puerto 8080 también está ocupado por otro servicio (como un GeoServer instalado fuera de Docker), cambia:
 ```bash
     ports:
