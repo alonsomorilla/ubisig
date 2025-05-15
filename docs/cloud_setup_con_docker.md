@@ -29,9 +29,9 @@ CREATE EXTENSION postgis;
 ```
 ---
 
-## 3. Instalación de GeoServer
+## 3. Instalación de Docker y Docker Compose
 
-### 3.1. Instalación de Docker y Docker Compose
+### 3.1. Instalación de Docker
 ```bash
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg lsb-release
@@ -68,13 +68,75 @@ sudo curl -L "https://github.com/docker/compose/releases/download/v$DOCKER_COMPO
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
-### 4. Estado de los servicios
+### 3.4. Estado de los servicios
 Verificar que Docker está activo:
 ```bash
 systemctl status docker
 ```
 
-### 5. Instalación de GeoServer. 
+### 3.5. Clonar el repositorio desde GitHub
+Primero, accede a tu instancia EC2 por SSH y clona el repositorio de UbiSIG.
+```bash
+git clone https://github.com/alonsomorilla/ubisig.git
+cd ubisig
+```
+Si prefieres usar SSH (recomendado):
+```bash
+git clone git@github.com:alonsomorilla/ubisig.git
+```
+💡 Si usas SSH, asegúrate de que tu clave pública esté registrada en GitHub.
+
+### 3.6. Crear el archivo docker-compose.yml
+1. Ve a la carpeta deploy (créala si no existe):
+```bash
+mkdir -p deploy
+cd deploy
+```
+2. Crea y edita el archivo:
+```bash
+nano docker-compose.yml
+```
+3. Copia y pega esta configuración básica:
+```bash
+services:
+  postgis:
+    image: postgis/postgis:15-3.3
+    container_name: ubisig_postgis
+    environment:
+      POSTGRES_DB: ubisig
+      POSTGRES_USER: ubisig_user
+      POSTGRES_PASSWORD: ubisig_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  geoserver:
+    image: kartoza/geoserver
+    container_name: ubisig_geoserver
+    environment:
+      - GEOSERVER_ADMIN_USER=admin
+      - GEOSERVER_ADMIN_PASSWORD=geoserverpass
+    volumes:
+      - geoserver_data:/opt/geoserver/data_dir
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgis
+
+volumes:
+  postgres_data:
+  geoserver_data:
+```
+### Importante: gestión de puertos
+#### Evitar conflictos de puertos
+- Si ya tienes PostgreSQL instalado en el sistema, el puerto 5432 puede estar ocupado. Para evitarlo, **cambia el puerto en Docker**:
+``ỳaml
+    ports:
+      - "55432:5432"
+```
+
+## 5. Instalación de GeoServer. 
 ```bash
 docker run -d --name geoserver \
   -p 8080:8080 \
