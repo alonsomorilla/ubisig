@@ -27,3 +27,25 @@ CREATE DATABASE ubisig;
 \c ubisig
 CREATE EXTENSION postgis;
 ```
+---
+
+## 3. Instalación de GeoServer
+
+### Opción A: Manual (WAR en Tomcat)
+1. Instalar Java 11
+2. Instalar Tomcat 9
+3. Descargar GeoServer WAR
+4. Copiarlo a webapps/
+
+### Opción B: Docker
+```bash
+docker run -d --name geoserver \
+  -p 8080:8080 \
+  -e GEOSERVER_ADMIN_USER=admin \
+  -e GEOSERVER_ADMIN_PASSWORD=admin \
+  -v $HOME/geoserver_data:/opt/geoserver/data_dir \
+  kartoza/geoserver
+```
+---
+
+## 4. Acceso desde Internet
