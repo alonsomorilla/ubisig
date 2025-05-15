@@ -131,10 +131,10 @@ volumes:
 ### Importante: gestión de puertos
 #### Evitar conflictos de puertos
 - Si ya tienes PostgreSQL instalado en el sistema, el puerto 5432 puede estar ocupado. Para evitarlo, **cambia el puerto en Docker**:
----
+```bash
     ports:
       - "55432:5432"
----
+```
 
 - Si el puerto 8080 también está ocupado por otro servicio (como un GeoServer instalado fuera de Docker), cambia:
 ```bash
@@ -142,9 +142,25 @@ volumes:
       - "8181:8080"
 ```
 Ahora accederás a GeoServer en:
+```bash
+http://<IP>:8181/geoserver
+```
 
+### 3.7 Lanzar los servicios
+Desde la carpeta deploy, ejecuta:
+```bash
+docker compose up -d
+```
+Verifica que esté todo funcionando correctamente:
+```bash
+docker ps
+```
+GeoServer estará accesible desde
+```bash
+http://<TU_IP_PUBLICA>:8080/geoserver
+```
 
-## 5. Instalación de GeoServer. 
+## 4. Instalación de GeoServer. 
 ```bash
 docker run -d --name geoserver \
   -p 8080:8080 \
@@ -155,8 +171,8 @@ docker run -d --name geoserver \
 ```
 ---
 
-## 4. Acceso desde Internet
-- Abrir puerto 8080 en el grupo de seguridad de EC2
+## 5. Acceso desde Internet
+- Abrir puerto 8080 (o el que hayas elegido) en el grupo de seguridad de EC2
 - Configurar HTTPS con NGNIX y Let's Encrypt (ver docs/ssl_config.md)
 - Asociar DNS dinámico o IP elástica
 
