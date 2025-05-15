@@ -57,6 +57,7 @@ Para usar Docker sin sudo:
 ```bash
 sudo usermod -aG docker $USER
 newgrp docker
+```
 
 ### 3.3. Instalar Docker Compose (si no viene instalado por defecto)
 ```bash
