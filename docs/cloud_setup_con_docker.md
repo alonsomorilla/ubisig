@@ -60,6 +60,8 @@ newgrp docker
 ```
 
 ### 3.3. Instalar Docker Compose (si no viene instalado por defecto)
+Utilizamos Docker Compose para simplificar el despliegue de servicios relacionados (GeoServer y PostGIS) de forma reproducible, portable y fácilmente configurable.
+
 ```bash
 DOCKER_COMPOSE_VERSION=2.24.0
 sudo curl -L "https://github.com/docker/compose/releases/download/v$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" \
