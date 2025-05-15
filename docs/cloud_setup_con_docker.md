@@ -99,7 +99,7 @@ cd deploy
 nano docker-compose.yml
 ```
 3. Copia y pega esta configuración básica:
-```bash
+```yaml
 services:
   postgis:
     image: postgis/postgis:15-3.3
