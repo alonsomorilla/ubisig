@@ -112,6 +112,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - ubisig_net
 
   geoserver:
     image: kartoza/geoserver
@@ -125,10 +127,15 @@ services:
       - "8080:8080"
     depends_on:
       - postgis
+    networks:
+      - ubisig_net
 
 volumes:
   postgres_data:
   geoserver_data:
+
+networks:
+  ubisig_net:
 ```
 ### Importante: gestión de puertos
 #### Evitar conflictos de puertos
